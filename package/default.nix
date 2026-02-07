@@ -193,6 +193,12 @@ let
       set +e
       cp $TMP/ya/{usr/share,opt} $out/ -R
       substituteInPlace $out/share/applications/${desktopName}.desktop --replace /usr/ $out/
+      
+      # Создаем стандартную директорию для иконок в $out
+      mkdir -p $out/share/icons/hicolor/128x128/apps/
+
+      # Копируем иконку из "внутренностей" Яндекса в стандартное место
+      cp $out/opt/yandex/browser/product_logo_128.png $out/share/icons/hicolor/128x128/apps/yandex-browser.png
 
       # This is from original nixpkgs source
       # ln -sf $out/opt/yandex/${folderName}/yandex_browser $out/bin/${pname}
